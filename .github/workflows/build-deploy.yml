@@ -1,9 +1,18 @@
 name: Build and Deploy code
 
-on: [push, pull_request]
+on: [ push, pull_request ]
 
 jobs:
   job1:
+    env:
+      DATABASE_HOSTNAME: localhost
+      DATABASE_PORT: 5432
+      DATABASE_PASSWORD: asdf@123
+      DATABASE_NAME: fastapi
+      DATABASE_USERNAME: postgres
+      SECRET_KEY: dJhC4VnRuYThfyWu8I6RtU6d5h94WaBXxveylJmu8Tx8kPCRKt17mdSuYcHbAAth0fv8DAeebUCGpebIPz63168QBjxJz4kVPCsKnoT1Oh7QRvFWiMpNsCIYP87odjVuHpbf2kO6aztUjXDa8NEA0XuxosoUwNR8fltuM6wOcvoHJByJ3OzSs1k6MLqWxZOFBGfbF8IxprnFYQEBFmT2IPRgJIYnPtGEY2up3aMhfcru5eaThrNTY0kJVwJ2bK05cmpNqUzSm72ojjB2gJmAxs62IDSaU1QJH2Muj2WNPUSLfeA5OcVxeILqvKeOC7C6
+      ALGORITHM: HS256
+      ACCESS_TOKEN_EXPIRE_MINUTES: 30
     runs-on: ubuntu-latest
     steps:
       - name: pulling git repo
@@ -11,7 +20,7 @@ jobs:
       - name: setting up python
         uses: actions/setup-python@v2
         with:
-           python-version: '3.10'
+          python-version: '3.10'
       - name: update pip
         run: python -m pip install --upgrade pip
       - name: installing dependencies
