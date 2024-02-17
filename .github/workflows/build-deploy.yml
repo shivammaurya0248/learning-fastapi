@@ -22,9 +22,22 @@ jobs:
         env:
           POSTGRES_PASSWORD: ${{vars.DATABASE_PASSWORD}}
 #          POSTGRES_MULTIPLE_DATABASES: ${{ vars.DATABASE_NAME }}_test,${{ vars.DATABASE_NAME }}
-          POSTGRES_DB: ${{ vars.DATABASE_NAME }}_test
+          POSTGRES_DB: ${{ vars.DATABASE_NAME }}
         ports:
           - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      postgres_testing:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: ${{vars.DATABASE_PASSWORD}}
+          #          POSTGRES_MULTIPLE_DATABASES: ${{ vars.DATABASE_NAME }}_test,${{ vars.DATABASE_NAME }}
+          POSTGRES_DB: ${{ vars.DATABASE_NAME }}_test
+        ports:
+          - 5433:5432
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
