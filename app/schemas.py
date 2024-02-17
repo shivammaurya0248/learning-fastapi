@@ -3,6 +3,7 @@ from datetime import datetime
 from typing import Optional
 from pydantic.types import conint
 
+
 class PostBase(BaseModel):
     title: str
     content: str
@@ -27,14 +28,18 @@ class Post(PostBase):
     created_at: datetime
     owner_id: int
     owner: UserOut
+
     class Config:
         from_attributes = True
+
 
 class PostOut(BaseModel):
     Post: Post
     votes: int
+
     class Config:
         from_attributes = True
+
 
 class UserCreate(BaseModel):
     email: EmailStr
@@ -58,4 +63,4 @@ class TokenData(BaseModel):
 
 class Vote(BaseModel):
     post_id: int
-    dir: conint(le=1)
+    dir: conint(ge=0, le=1)
