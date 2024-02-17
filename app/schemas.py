@@ -1,7 +1,7 @@
 from pydantic import BaseModel, EmailStr
 from datetime import datetime
 from typing import Optional
-from pydantic.types import conint
+from pydantic.types import conint, Interval
 
 
 class PostBase(BaseModel):
