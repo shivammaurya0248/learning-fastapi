@@ -5,23 +5,23 @@ on: [ push, pull_request ]
 jobs:
   job1:
     environment:
-      name: Testing
+      name: testing
     env:
-      DATABASE_HOSTNAME: ${{ secrets.DATABASE_HOSTNAME }}
-      DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
-      DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-      DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
-      DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
-      SECRET_KEY: ${{ secrets.SECRET_KEY }}
-      ALGORITHM: ${{ secrets.ALGORITHM }}
-      ACCESS_TOKEN_EXPIRE_MINUTES: ${{ secrets.ACCESS_TOKEN_EXPIRE_MINUTES }}
+      DATABASE_HOSTNAME: ${{ vars.DATABASE_HOSTNAME }}
+      DATABASE_PORT: ${{ vars.DATABASE_PORT }}
+      DATABASE_PASSWORD: ${{ vars.DATABASE_PASSWORD }}
+      DATABASE_NAME: ${{ vars.DATABASE_NAME }}
+      DATABASE_USERNAME: ${{ vars.DATABASE_USERNAME }}
+      SECRET_KEY: ${{ vars.SECRET_KEY }}
+      ALGORITHM: ${{ vars.ALGORITHM }}
+      ACCESS_TOKEN_EXPIRE_MINUTES: ${{ vars.ACCESS_TOKEN_EXPIRE_MINUTES }}
 
     services:
       postgres:
         image: postgres
         env:
-          POSTGRES_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
-          POSTGRES_DB: ${{ secrets.DATABASE_NAME }}_test
+          POSTGRES_PASSWORD: ${{vars.DATABASE_PASSWORD}}
+          POSTGRES_DB: ${{ vars.DATABASE_NAME }}_test
         ports:
           - 5432:5432
         options: >-
