@@ -21,7 +21,8 @@ jobs:
         image: postgres
         env:
           POSTGRES_PASSWORD: ${{vars.DATABASE_PASSWORD}}
-          POSTGRES_DB: ${{ vars.DATABASE_NAME }}_test
+          POSTGRES_MULTIPLE_DATABASES: ${{ vars.DATABASE_NAME }}_test, ${{ vars.DATABASE_NAME }}_test
+#          POSTGRES_DB: ${{ vars.DATABASE_NAME }}_test
         ports:
           - 5432:5432
         options: >-
