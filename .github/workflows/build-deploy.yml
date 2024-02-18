@@ -97,11 +97,27 @@ jobs:
 #        uses: akhileshns/heroku-deploy@v3.13.15 # This is the action
 #        with:
 #          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-#          heroku_app_name: ${{secretes.HEROKU_APP_NAME}}
-#          heroku_email: ${{secretes.HEROKU_EMAIL}}
+#          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+#          heroku_email: ${{secrets.HEROKU_EMAIL}}
 #      # pull from git repository
 
       # install heroku cli
       # heroku login
       # add git remote for heroku
       # git push heroku main
+
+      # login to our ubuntu
+      # cd /app/src
+      # git pull
+      # systemctl restart api
+#      - name: deploy to ubuntu server
+#        uses: appleboy/ssh-action@master
+#        with:
+#          host: ${{ secrets.PROD_HOST }}
+#          username: ${{ secrets.PROD_USERNAME }}
+#          password: ${{ secrets.PROD_PASSWORD }}
+#          port: ${{ secrets.PROD_PORT }}
+#          script: |
+#            cd app/src
+#            git pull
+#            echo ${{ secrets.PROD_PASSWORD }} | sudo -S systemctl restart api
